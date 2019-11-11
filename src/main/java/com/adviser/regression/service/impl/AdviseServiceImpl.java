@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
+import java.io.IOException;
+
 @Service
 public class AdviseServiceImpl implements AdviseService {
 
@@ -22,6 +24,10 @@ public class AdviseServiceImpl implements AdviseService {
 
     @Override
     public void addTickData(TickData tickData) {
-        adviser.addTickData(tickData);
+        try {
+            adviser.addTickData(tickData);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
